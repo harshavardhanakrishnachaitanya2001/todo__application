@@ -1,15 +1,10 @@
 import React from 'react'
 function Task(props){
         return (
-                <div className="col-12 col-sm-2 tocompletetasks">
-                <h3>{props.printtask}</h3>
-        <button type="button" onClick={completed}>DONE</button>
-                </div>
-        )
-}
-const completed=(props)=>{
-        return (
-                alert(props.printtask + " is removed")
+            <div className="col-12 col-sm-1 tocompletetasks">
+                <h3>{props.task}</h3>
+                <button type="button" onClick={props.removeItem}>DONE</button>
+            </div>
         )
 }
 export default Task

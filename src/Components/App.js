@@ -9,6 +9,10 @@ class App extends React.Component{
         }
         this.handleSubmit=this.handleSubmit.bind(this)
         this.handleChange=this.handleChange.bind(this)
+        this.removeItem=this.removeItem.bind(this)
+    }
+    removeItem(){
+      this.state.todoList.pop()
     }
     handleSubmit(event){
             event.preventDefault()
@@ -39,7 +43,7 @@ class App extends React.Component{
                         //      <h2 className="mr-1">{task}</h2>
                         //      <button type="button" onClick={this.completedTask}>DONE</button>
                         //  </div>
-                        <Task printtask={task} key={task}/>
+                        <Task task={task} key={task} removeItem={this.removeItem}/>
                     )
                 })}
             </div>
