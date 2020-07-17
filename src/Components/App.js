@@ -11,22 +11,32 @@ class App extends React.Component{
         this.handleChange=this.handleChange.bind(this)
         this.removeItem=this.removeItem.bind(this)
     }
-    removeItem(){
-      this.state.todoList.pop()
+    removeItem(id){
+      this.setState((prevState) => {
+          prevState.taskList.slice()
+          return (prevState.taskList)
+      })
     }
     handleSubmit(event){
             event.preventDefault()
-            this.state.todoList.push(this.state.todoTask)
-            this.setState({
-                todoTask:""
+            this.setState(prevState=>{
+                let taskList=[...prevState.todoList]
+                taskList.push({
+                    id:this.state.todoTask+taskList.length,
+                    name:this.state.todoTask
+                })
+                return {
+                    todoList:taskList,
+                    todoTask:""
+                }
             })
-            console.log(this.state.todoList)
     }
     handleChange(event){
         event.preventDefault()
         this.setState({
             todoTask:event.target.value
         })
+        
     }
     render(){
         return (
@@ -43,7 +53,7 @@ class App extends React.Component{
                         //      <h2 className="mr-1">{task}</h2>
                         //      <button type="button" onClick={this.completedTask}>DONE</button>
                         //  </div>
-                        <Task task={task} key={task} removeItem={this.removeItem}/>
+                        <Task task={task} key={task.id} removeItem={this.removeItem}/>
                     )
                 })}
             </div>
