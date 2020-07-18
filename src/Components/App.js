@@ -11,25 +11,28 @@ class App extends React.Component{
         this.handleChange=this.handleChange.bind(this)
         this.removeItem=this.removeItem.bind(this)
     }
-    removeItem(id){
-      this.setState((prevState) => {
-          prevState.taskList.slice()
-          return (prevState.taskList)
-      })
-    }
     handleSubmit(event){
-            event.preventDefault()
-            this.setState(prevState=>{
-                let taskList=[...prevState.todoList]
-                taskList.push({
-                    id:this.state.todoTask+taskList.length,
-                    name:this.state.todoTask
-                })
-                return {
-                    todoList:taskList,
-                    todoTask:""
-                }
+        event.preventDefault()
+        this.setState(prevState=>{
+            let taskList=[...prevState.todoList]
+            taskList.push({
+                id:this.state.todoTask+taskList.length,
+                name:this.state.todoTask
             })
+            return {
+                todoList:taskList,
+                todoTask:""
+            }
+        })
+    }
+    removeItem(id){
+        const check=this.state.todoList.filter((p)=>p.id!==id)
+        console.log(check)
+        this.setState((prevState)=>{
+            return {
+                todoList:check
+            }
+        })
     }
     handleChange(event){
         event.preventDefault()
