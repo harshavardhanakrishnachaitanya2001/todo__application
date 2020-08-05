@@ -27,7 +27,6 @@ class App extends React.Component{
     }
     removeItem(id){
         const check=this.state.todoList.filter((p)=>p.id!==id)
-        console.log(check)
         this.setState((prevState)=>{
             return {
                 todoList:check
